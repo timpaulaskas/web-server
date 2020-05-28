@@ -16,22 +16,19 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('/', (req, res) => {
     res.render('index', {
-        title: 'Weather App',
-        name: 'Tim Paulaskas'
+        title: 'Weather App'
     })
 })
 
 app.get('/about', (req, res) => {
     res.render('about', {
-        title: 'About',
-        name: 'Tim Paulaskas'
+        title: 'About'
     })
 })
 
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
-        name: 'Tim Paulaskas',
         message: 'This is a help message'
     })
 })
@@ -40,6 +37,20 @@ app.get('/weather', (req, res) => {
     res.send({
         forecast: 'This is the forecast',
         location: 'Costa Mesa, California, United States'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        message: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        message: 'Your lack of navigation is disturbing'
     })
 })
 
